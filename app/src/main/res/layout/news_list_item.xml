@@ -32,8 +32,9 @@
         tools:text="Long placeholder Article Title that should wrap to more than 2 lines of text" />
 
     <TextView
+        app:layout_constraintHorizontal_weight="1"
         android:id="@+id/section_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/eight_dp"
         android:layout_marginLeft="@dimen/eight_dp"
@@ -50,62 +51,36 @@
         android:textAllCaps="true"/>
 
     <TextView
+        app:layout_constraintHorizontal_weight="1"
         android:id="@+id/article_date"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/eight_dp"
         android:layout_marginLeft="@dimen/eight_dp"
         android:layout_marginTop="@dimen/eight_dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="@dimen/eight_dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/author_name"
         app:layout_constraintStart_toEndOf="@+id/section_name"
         app:layout_constraintTop_toBottomOf="@+id/news_title"
         tools:text="Date" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        app:layout_constraintHorizontal_weight="1"
+        android:id="@+id/author_name"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/four_dp"
-        android:layout_marginLeft="@dimen/four_dp"
-        android:layout_marginTop="@dimen/eight_dp"
-        android:layout_marginBottom="@dimen/eight_dp"
-        android:text="@string/seperator"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/article_date"
-        app:layout_constraintTop_toBottomOf="@+id/news_title"
-        android:textStyle="bold"
-        android:textSize="@dimen/sixteen_sp"/>
-
-    <TextView
-        android:id="@+id/article_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/four_dp"
-        android:layout_marginLeft="@dimen/four_dp"
-        android:layout_marginTop="@dimen/eight_dp"
-        android:layout_marginBottom="@dimen/eight_dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/news_title"
-        tools:text="Time" />
-
-    <TextView
-        android:id="@+id/read_more"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/sixteen_dp"
-        android:layout_marginLeft="@dimen/sixteen_dp"
         android:layout_marginTop="@dimen/eight_dp"
         android:layout_marginEnd="@dimen/eight_dp"
         android:layout_marginRight="@dimen/eight_dp"
         android:layout_marginBottom="@dimen/eight_dp"
-        android:text="@string/read_more"
+        tools:text="@string/author_name"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/article_time"
-        app:layout_constraintTop_toBottomOf="@+id/news_title" />
+        app:layout_constraintTop_toBottomOf="@+id/news_title"
+        android:textAllCaps="true" />
 
 </android.support.constraint.ConstraintLayout>

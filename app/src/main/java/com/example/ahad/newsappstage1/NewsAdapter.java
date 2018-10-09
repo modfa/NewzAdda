@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class NewsAdapter extends ArrayAdapter<News> {
     private static final String TIME_DATE_SEPARATOR = "T";
     private String currentDate;
-    private String currentTime;
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).
      * The context is used to inflate the layout file, and the list is the data we want
@@ -65,21 +64,23 @@ public class NewsAdapter extends ArrayAdapter<News> {
         // Display the Section of the current news article in that TextView
         sectionNameView.setText(currentNewsSection);
 
-        // Find the TextView with view ID date_time
+        // Find the TextView with view ID article_date
         TextView newsDateView =  listItemView.findViewById(R.id.article_date);
-        // Get the news publication date atribute
-       TextView newsTimeView = listItemView.findViewById(R.id.article_time);
+
         String currentNewsPublicationDate = currentNews.getmNewsPublicationDate();
         // we need to seperate the time and date
         if(currentNewsPublicationDate.contains(TIME_DATE_SEPARATOR)){
             String [] dataAndTime = currentNewsPublicationDate.split(TIME_DATE_SEPARATOR);
             currentDate = dataAndTime[0];
-            currentTime = dataAndTime[1];
         }
-        // Display the Title of the current news article in that TextView
+        // Display the Date of the current news article in that TextView
         newsDateView.setText(currentDate);
-        newsTimeView.setText(currentTime);
 
+        // Find the TextView with view ID author_name
+        TextView authorNameView = listItemView.findViewById(R.id.author_name);
+        // Get the news publication author name attribute
+        String authorName = currentNews.getmAuthorName();
+        authorNameView.setText(authorName);
         // Return the list item view that is now showing the appropriate data
         return listItemView;
     }

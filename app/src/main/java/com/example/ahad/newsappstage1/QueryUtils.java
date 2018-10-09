@@ -146,7 +146,18 @@ public final class QueryUtils {
                 String articleTitle= resultJsonObject.getString("webTitle");
                 String articlePublicationDate = resultJsonObject.getString("webPublicationDate");
                 String articleUrl = resultJsonObject.getString("webUrl");
-                News currentNews = new News(articleSectionName,articlePublicationDate,articleTitle,articleUrl);
+               JSONArray tagsArray = resultJsonObject.getJSONArray("tags");
+
+                  String authorName = "";
+
+                  if(!tagsArray.isNull(0)){
+                   JSONObject tagsJSONObject = tagsArray.getJSONObject(0);
+                   String authorFirstName = tagsJSONObject.getString("firstName");
+                   String authorLastName = tagsJSONObject.getString("lastName");
+                    authorName = "- "+ authorFirstName + " " + authorLastName;
+                  }
+
+                News currentNews = new News(articleSectionName,articlePublicationDate,articleTitle,articleUrl,authorName);
                 news.add(currentNews);
             }
 
