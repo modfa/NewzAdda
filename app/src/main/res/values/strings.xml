@@ -6,4 +6,5 @@
     <string name="no_news">No news found.</string>
     <string name="author_name"><![CDATA[Author Name]]></string>
     <string name="seperator">|</string>
+    <string name="no_author">- No Author</string>
 </resources>

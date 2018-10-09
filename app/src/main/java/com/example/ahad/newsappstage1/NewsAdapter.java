@@ -80,7 +80,12 @@ public class NewsAdapter extends ArrayAdapter<News> {
         TextView authorNameView = listItemView.findViewById(R.id.author_name);
         // Get the news publication author name attribute
         String authorName = currentNews.getmAuthorName();
-        authorNameView.setText(authorName);
+        // Checking if the authorName string is empty 
+        if(authorName.isEmpty()){
+            authorNameView.setText(R.string.no_author);
+        }
+        else{
+        authorNameView.setText(authorName);}
         // Return the list item view that is now showing the appropriate data
         return listItemView;
     }
