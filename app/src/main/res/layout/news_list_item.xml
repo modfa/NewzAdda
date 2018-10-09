@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/eight_eight_dp"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/sixteen_dp"
+    android:paddingLeft="@dimen/sixteen_dp"
+    android:paddingEnd="@dimen/sixteen_dp"
+    android:paddingRight="@dimen/sixteen_dp">
+
+    <TextView
+        android:id="@+id/news_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/eight_dp"
+        android:layout_marginLeft="@dimen/eight_dp"
+        android:layout_marginEnd="@dimen/eight_dp"
+        android:layout_marginRight="@dimen/eight_dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="@dimen/eighteen_sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.34"
+        tools:text="Long placeholder Article Title that should wrap to more than 2 lines of text" />
+
+    <TextView
+        android:id="@+id/section_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/eight_dp"
+        android:layout_marginLeft="@dimen/eight_dp"
+        android:layout_marginTop="@dimen/eight_dp"
+        android:layout_marginBottom="@dimen/eight_dp"
+        tools:text="Section"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/news_title"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:paddingRight="@dimen/eight_dp"
+        android:paddingLeft="@dimen/eight_dp"
+        android:textAllCaps="true"/>
+
+    <TextView
+        android:id="@+id/article_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/eight_dp"
+        android:layout_marginLeft="@dimen/eight_dp"
+        android:layout_marginTop="@dimen/eight_dp"
+        android:layout_marginBottom="@dimen/eight_dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/section_name"
+        app:layout_constraintTop_toBottomOf="@+id/news_title"
+        tools:text="Date" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/four_dp"
+        android:layout_marginLeft="@dimen/four_dp"
+        android:layout_marginTop="@dimen/eight_dp"
+        android:layout_marginBottom="@dimen/eight_dp"
+        android:text="@string/seperator"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/article_date"
+        app:layout_constraintTop_toBottomOf="@+id/news_title"
+        android:textStyle="bold"
+        android:textSize="@dimen/sixteen_sp"/>
+
+    <TextView
+        android:id="@+id/article_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/four_dp"
+        android:layout_marginLeft="@dimen/four_dp"
+        android:layout_marginTop="@dimen/eight_dp"
+        android:layout_marginBottom="@dimen/eight_dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/news_title"
+        tools:text="Time" />
+
+    <TextView
+        android:id="@+id/read_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sixteen_dp"
+        android:layout_marginLeft="@dimen/sixteen_dp"
+        android:layout_marginTop="@dimen/eight_dp"
+        android:layout_marginEnd="@dimen/eight_dp"
+        android:layout_marginRight="@dimen/eight_dp"
+        android:layout_marginBottom="@dimen/eight_dp"
+        android:text="@string/read_more"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/article_time"
+        app:layout_constraintTop_toBottomOf="@+id/news_title" />
+
+</android.support.constraint.ConstraintLayout>
