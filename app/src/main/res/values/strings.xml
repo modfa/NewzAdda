@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">News App Stage 1</string>
+    <string name="app_name">NewzAdda</string>
     <!-- Error message when there is no internet connectivity [CHAR LIMIT=NONE] -->
     <string name="no_internet_connection">No internet connection.</string>
     <!-- Text to display in the list when there are no earthquakes [CHAR LIMIT=NONE] -->
@@ -7,4 +7,50 @@
     <string name="author_name"><![CDATA[Author Name]]></string>
     <string name="seperator">|</string>
     <string name="no_author">- No Author</string>
+
+    <!-- Settings Menu Item  -->
+    <string name="settings_menu_item">Settings</string>
+    <string name="settings_title">News Settings</string>
+
+    <!-- Strings For Category Preference [CHAR LIMIT=30] -->
+    <string name="settings_category_label">Category</string>
+    <string name="settings_category_key" translatable="false">category</string>
+    <string name="settings_category_default" translatable="false">@string/settings_category_sports_value</string>
+
+    <!-- Label for Category's Sports options [CHAR LIMIT=20] -->
+    <string name="settings_category_sports_label">Sports</string>
+    <string name="settings_category_sports_value" translatable="false">sports</string>
+
+    <!-- Label for Category's Politics options [CHAR LIMIT=20] -->
+    <string name="settings_category_politics_label">Politics</string>
+    <string name="settings_category_politics_value" translatable="false">politics</string>
+
+    <!-- Label for Category's Fashion options [CHAR LIMIT=20] -->
+    <string name="settings_category_fashion_label">Fashion</string>
+    <string name="settings_category_fashion_value" translatable="false">fashion</string>
+
+
+    <!-- Strings For Order-By Preference [CHAR LIMIT=30] -->
+    <string name="settings_order_by_label">Order By</string>
+    <string name="settings_order_by_key" translatable="false">order_by</string>
+    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_newest_value</string>
+
+
+    <!-- Label for Order-By Newest options [CHAR LIMIT=20] -->
+    <string name="settings_order_by_newest_label">Newest</string>
+    <string name="settings_order_by_newest_value" translatable="false">newest</string>
+
+    <!-- Label for Order-By Oldest options [CHAR LIMIT=20] -->
+    <string name="settings_order_by_oldest_label">Oldest</string>
+    <string name="settings_order_by_oldest_value" translatable="false">oldest</string>
+
+    <!-- Label for Order-By Relevance options [CHAR LIMIT=20] -->
+    <string name="settings_order_by_relevance_label">Relevence</string>
+    <string name="settings_order_by_relevance_value" translatable="false">relevence</string>
+
+
+
+
+
+
 </resources>

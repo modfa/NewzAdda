@@ -3,12 +3,16 @@ package com.example.ahad.newsappstage1;
 import android.app.LoaderManager;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -18,21 +22,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NewsActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
+    public static final String LOG_TAG = NewsActivity.class.getName();
     /**
      * Constant value for the news loader ID. We can choose any integer.
      * This really only comes into play if you're using multiple loaders.
      */
     private static final int NEWS_LOADER_ID = 1;
-
-    /** URL for news data from the Guardian API dataset */
+    /**
+     * URL for news data from the Guardian API dataset
+     */
     private static final String NEWS_REQUEST_URL =
-                    "https://content.guardianapis.com/search?show-tags=contributor&q=sports&api-key=test";
-    public static final String LOG_TAG = NewsActivity.class.getName();
-
-    /** Adapter for the list of news */
+            "https://content.guardianapis.com/search";
+    /**
+     * Adapter for the list of news
+     */
     private NewsAdapter mAdapter;
 
-    /** TextView that is displayed when the list is empty */
+    /**
+     * TextView that is displayed when the list is empty
+     */
     private TextView mEmptyStateTextView;
 
     @Override
@@ -43,10 +51,10 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
 
 
         // Find a reference to the {@link ListView} in the layout
-        ListView newsListView =  findViewById(R.id.list);
+        ListView newsListView = findViewById(R.id.list);
 
 // find a reference to the empty text view
-        mEmptyStateTextView =  findViewById(R.id.empty_view);
+        mEmptyStateTextView = findViewById(R.id.empty_view);
         newsListView.setEmptyView(mEmptyStateTextView);
 
         // Create a new {@link ArrayAdapter} of news
@@ -62,13 +70,13 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 // Find the current news that was clicked on
-                News currentNews  = mAdapter.getItem(position);
+                News currentNews = mAdapter.getItem(position);
 
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
                 Uri newsUri = Uri.parse(currentNews.getmNewsUrl());
 
                 // Create a new intent to view the news URI
-                Intent websiteIntent = new Intent(Intent.ACTION_VIEW,newsUri);
+                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, newsUri);
 
                 // Send the intent to launch a new activity
                 startActivity(websiteIntent);
@@ -88,8 +96,7 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
             // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
             // because this activity implements the LoaderCallbacks interface).
             loaderManager.initLoader(NEWS_LOADER_ID, null, this);
-        }
-        else {
+        } else {
             // Otherwise, display error
             // First, hide loading indicator so error message will be visible
             View loadingIndicator = findViewById(R.id.progress_bar);
@@ -101,9 +108,25 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
 
     }
 
+    // onCreateLoader instantiates and returns a new Loader for the given ID
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
-        return new NewsLoader(this, NEWS_REQUEST_URL);
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String category = sharedPrefs.getString(
+                getString(R.string.settings_category_key),
+                getString(R.string.settings_category_default)
+        );
+
+        String orderBy = sharedPrefs.getString(getString(R.string.settings_order_by_key), getString(R.string.settings_order_by_newest_value));
+
+        Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+        uriBuilder.appendQueryParameter("order-by", orderBy);
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
+        uriBuilder.appendQueryParameter("q", category);
+        uriBuilder.appendQueryParameter("api-key", "16cf5c58-dd01-4f4e-8ab5-f4cb51d6f333");
+
+        return new NewsLoader(this, uriBuilder.toString());
     }
 
     @Override
@@ -127,5 +150,24 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoaderReset(Loader<List<News>> loader) {
         // Loader reset, so we can clear out our existing data.
         mAdapter.clear();
+    }
+
+    @Override
+    // This method initialize the contents of the Activity's options menu.
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the Options Menu we specified in XML
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
